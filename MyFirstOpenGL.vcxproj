@@ -72,16 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Dev\MyFirstOpenGL\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dev\MyFirstOpenGL\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Dev\MyFirstOpenGL\Libraries\include;C:\Users\plant\source\repos\plantstoen\MyFirstOpenGL\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Dev\MyFirstOpenGL\Libraries\lib;C:\Users\plant\source\repos\plantstoen\MyFirstOpenGL\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Dev\MyFirstOpenGL\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dev\MyFirstOpenGL\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Dev\MyFirstOpenGL\Libraries\include;C:\Users\plant\source\repos\plantstoen\MyFirstOpenGL\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Dev\MyFirstOpenGL\Libraries\lib;C:\Users\plant\source\repos\plantstoen\MyFirstOpenGL\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -147,6 +147,10 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Triangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

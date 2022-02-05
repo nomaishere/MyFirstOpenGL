@@ -1,7 +1,9 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Triangle.h"
 
+/*
 int main()
 {
 	// Initialize GLFW
@@ -51,5 +53,12 @@ int main()
 	glfwDestroyWindow(window);
 	// Terminate GLFW before ending the program
 	glfwTerminate();
+	return 0;
+}
+*/
+
+int main()
+{
+	triangle();
 	return 0;
 }
