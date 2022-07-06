@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{5a0c7c1d-38a1-477b-aabc-e55d8280763b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{279bd609-f70f-4861-8184-4ea89f0d1b8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -34,6 +37,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VAO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -61,5 +67,13 @@
     <None Include="default.frag">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Users\Sangmin Kim\Downloads\pop_cat.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="..\..\Users\Sangmin Kim\Downloads\brick.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
