@@ -14,8 +14,8 @@
 #include "Texture.h"
 
 
-const unsigned int width = 1600;
-const unsigned int height = 1600;
+const unsigned int width = 800;
+const unsigned int height = 800;
 
 // Vertices coordinates
 GLfloat vertices[] =
@@ -135,7 +135,7 @@ int main()
 	lightVBO.Unbind();
 	lightEBO.Unbind();
 
-	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	glm::vec4 lightColor = glm::vec4(0.535f, 0.324f, 0.976f, 1.0f);
 
 	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
 	glm::mat4 lightModel = glm::mat4(1.0f);
