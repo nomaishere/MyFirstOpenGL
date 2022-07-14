@@ -14,8 +14,8 @@
 #include "Texture.h"
 
 
-const unsigned int width = 800;
-const unsigned int height = 800;
+const unsigned int width = 1600;
+const unsigned int height = 1600;
 
 // Vertices coordinates
 GLfloat vertices[] =
@@ -131,6 +131,8 @@ int main()
 	objectModel = glm::translate(objectModel, objectPos);
 
 	lightShader.Activate();
+
+	// TODO : glUniformMatrix와 glGetUniformLocation의 구체적인 사용법 알아보기
 	glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(lightModel));
 	glUniform4f(glGetUniformLocation(lightShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	shaderProgram.Activate();
@@ -185,7 +187,6 @@ int main()
 
 
 
-	// Delete all the objects we've created
 	VAO1.Delete();
 	VBO1.Delete();
 	EBO1.Delete();
@@ -196,9 +197,7 @@ int main()
 	lightVBO.Delete();
 	lightEBO.Delete();
 	lightShader.Delete();
-	// Delete window before ending the program
 	glfwDestroyWindow(window);
-	// Terminate GLFW before ending the program
 	glfwTerminate();
 	return 0;
 }

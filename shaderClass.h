@@ -8,9 +8,10 @@
 #include <iostream>
 #include <cerrno>
 
+// Read text file and convert it to std::string
 std::string get_file_contents(const char* filename);
 
-// Vertex Shader客 Fragment Shader肺 捞风绢柳 Shader Program阑 积己 棺 包府
+// Create, activate, delete program object & shader object 
 class Shader
 {
 	public:
@@ -18,7 +19,7 @@ class Shader
 		// Constructor that build the Shader Program from 2 different shaders
 		Shader(const char* vertexFile, const char* fragmentFile);
 
-		//
+		
 		void Activate();
 		void Delete();
 	private:
