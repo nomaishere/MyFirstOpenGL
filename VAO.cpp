@@ -6,8 +6,8 @@ VAO::VAO()
 	glGenVertexArrays(1, &ID);
 }
 
-// Links a VBO to the VAO using a certain layout
-void VAO::LinkAttribute(VBO& VBO, GLuint layout, GLuint numComponents, GLenum type, GLsizeiptr stride, void* offset)
+// Links a VBO Attribute such as a position or color to the VAO
+void VAO::LinkAttrib(VBO& VBO, GLuint layout, GLuint numComponents, GLenum type, GLsizeiptr stride, void* offset)
 {
 	VBO.Bind();
 	glVertexAttribPointer(layout, numComponents, type, GL_FALSE, stride, offset);
@@ -31,4 +31,4 @@ void VAO::Unbind()
 void VAO::Delete()
 {
 	glDeleteVertexArrays(1, &ID);
-} 
+}
