@@ -41,7 +41,7 @@ int main()
 
 	glEnable(GL_DEPTH_TEST);
 
-	Model model("sword");
+	Model model("sword/scene.gltf");
 
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
 

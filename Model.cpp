@@ -29,7 +29,7 @@ void Model::loadMesh(unsigned int indMesh)
 	std::vector<float> posVec = getFloats(JSON["accessors"][posAccInd]);
 	std::vector<glm::vec3> positions = groupFloatsVec3(posVec);
 	std::vector<float> normalVec = getFloats(JSON["accessors"][normalAccInd]);
-	std::vector<glm::vec3> normals = groupFloatsVec3(JSON["accessors"][texAccInd]);
+	std::vector<glm::vec3> normals = groupFloatsVec3(normalVec);
 	std::vector<float> texVec = getFloats(JSON["accessors"][texAccInd]);
 	std::vector<glm::vec2> texUVs = groupFloatsVec2(texVec);
 
@@ -83,7 +83,7 @@ void Model::traverseNode(unsigned int nextNode, glm::mat4 matrix)
 
 	glm::mat4 trans = glm::mat4(1.0f);
 	glm::mat4 rot = glm::mat4(1.0f);
-	glm::mat4 sca = glm::mat4(1.0f);;
+	glm::mat4 sca = glm::mat4(1.0f);
 
 	trans = glm::translate(trans, translation);
 	rot = glm::mat4_cast(rotation);
@@ -93,7 +93,7 @@ void Model::traverseNode(unsigned int nextNode, glm::mat4 matrix)
 
 	if (node.find("mesh") != node.end())
 	{
-		translationMeshes.push_back(translation);
+		translationsMeshes.push_back(translation);
 		rotationsMeshes.push_back(rotation);
 		scalesMeshes.push_back(scale);
 		matricesMeshes.push_back(matNextNode);
@@ -142,7 +142,8 @@ std::vector<float> Model::getFloats(json accessor)
 
 	unsigned int beginningOfData = byteOffset + accByteOffset;
 	unsigned int lengthOfData = count * 4 * numPerVert;
-	for (unsigned int i = beginningOfData; i < beginningOfData + lengthOfData; i) {
+	for (unsigned int i = beginningOfData; i < beginningOfData + lengthOfData; i) 
+	{
 		unsigned char bytes[] = { data[i++], data[i++], data[i++], data[i++] };
 		float value;
 		std::memcpy(&value, bytes, sizeof(float));
@@ -221,21 +222,24 @@ std::vector<Texture> Model::getTextures()
 				break;
 			}
 		}
+		if (!skip)
+		{
+			if (texPath.find("baseColor") != std::string::npos)
+			{
+				Texture diffuse = Texture((fileDirectory + texPath).c_str(), "diffuse", loadedTex.size());
+				textures.push_back(diffuse);
+				loadedTex.push_back(diffuse);
+				loadedTexName.push_back(texPath);
+			}
+			else if (texPath.find("metallicRoughness") != std::string::npos)
+			{
+				Texture specular = Texture((fileDirectory + texPath).c_str(), "specular", loadedTex.size());
+				textures.push_back(specular);
+				loadedTex.push_back(specular);
+				loadedTexName.push_back(texPath);
+			}
+		}
 
-		if (texPath.find("baseColor") != std::string::npos)
-		{
-			Texture diffuse = Texture((fileDirectory + texPath).c_str(), "diffuse", loadedTex.size());
-			textures.push_back(diffuse);
-			loadedTex.push_back(diffuse);
-			loadedTexName.push_back(texPath);
-		}
-		else if (texPath.find("metallicRoughness") != std::string::npos)
-		{
-			Texture specular = Texture((fileDirectory + texPath).c_str(), "specular", loadedTex.size());
-			textures.push_back(specular);
-			loadedTex.push_back(specular);
-			loadedTexName.push_back(texPath);
-		}
 	}
 
 	return textures;
@@ -251,7 +255,8 @@ std::vector<Vertex> Model::assembleVertices
 	std::vector<Vertex> vertices;
 	for (int i = 0; i < positions.size(); i++)
 	{
-		vertices.push_back(
+		vertices.push_back
+		(
 			Vertex
 			{
 				positions[i],
