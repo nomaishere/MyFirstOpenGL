@@ -40,16 +40,21 @@ int main()
 
 
 	glEnable(GL_DEPTH_TEST);
-
-	Model model("sword/scene.gltf");
+	glDepthFunc(GL_LESS);
+	
 
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+
+	Model ground_model("models/ground/scene.gltf");
+	Model trees_model("models/trees/scene.gltf");
+
+
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
 	{
 		// Specify the color of the background
-		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClearColor(0.85f, 0.85f, 0.90f, 1.0f);
 		// Clean the back buffer and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -60,7 +65,8 @@ int main()
 		camera.updateMatrix(45.0f, 0.1f, 100.0f);
 
 
-		model.Draw(shaderProgram, camera);
+		ground_model.Draw(shaderProgram, camera);
+		trees_model.Draw(shaderProgram, camera);
 
 		// Swap the back buffer with the front buffer
 		glfwSwapBuffers(window);
