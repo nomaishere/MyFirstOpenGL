@@ -84,18 +84,18 @@ int main()
 	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 
+	lightShader.Activate();
+	glUniform4f(glGetUniformLocation(lightShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_STENCIL_TEST);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
 
-	
-
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
 
 	Model crow_model("models/crow/scene.gltf");
-	Model trees_model("models/trees/scene.gltf");
 
 
 
@@ -107,13 +107,14 @@ int main()
 		// Clean the back buffer and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-
+		//lightShader.Activate();
 		// Handles camera inputs
 		camera.Inputs(window);
 		// Updates and exports the camera matrix to the Vertex Shader
-		camera.updateMatrix(45.0f, 0.1f, 100.0f);
+		camera.updateMatrix(45.0f, 0.1f, 200.0f);
 
-		light.Draw(lightShader, camera);
+		lightShader.Activate();
+		//light.Draw(lightShader, camera);
 
 		glStencilFunc(GL_ALWAYS, 1, 0xFF);
 		glStencilMask(0xFF);
@@ -126,7 +127,7 @@ int main()
 		outliningProgram.Activate();
 		glUniform1f(glGetUniformLocation(outliningProgram.ID, "outlining"), 1.08f);
 		crow_model.Draw(outliningProgram, camera);
-
+		
 		glStencilMask(0xFF);
 		glStencilFunc(GL_ALWAYS, 0, 0xFF);
 		glEnable(GL_DEPTH_TEST);
